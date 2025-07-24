@@ -25,3 +25,4 @@
 /home/user/projects/csharp/webapi/LearnSecond/Learn.API/obj/Debug/net9.0/Learn.API.pdb
 /home/user/projects/csharp/webapi/LearnSecond/Learn.API/obj/Debug/net9.0/Learn.API.genruntimeconfig.cache
 /home/user/projects/csharp/webapi/LearnSecond/Learn.API/obj/Debug/net9.0/ref/Learn.API.dll
+/home/user/projects/csharp/webapi/LearnSecond/Learn.API/obj/Debug/net9.0/Learn.API.sourcelink.json
