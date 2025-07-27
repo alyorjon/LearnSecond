@@ -25,7 +25,63 @@ app.MapGet("/", () => "Hello World Alyor!");
 // GET /learns
 app.MapGet("/learns", () => learns);
 // GET /learns/{id}
-app.MapGet("/learns/{id}",(int id)=> learns.Find(learn => learn.Id == id));
+app.MapGet("/learns/{id}", (int id) =>
+{
+    LearnDto? learn = learns.Find(learn => learn.Id == id);
+    return learn==null?Results.NotFound():Results.Ok(learn);
 
+})
+.WithName("GetLearnById");
+
+// POST /learns
+app.MapPost("/learns", (CreateLearnerDto newLearn) =>
+    {
+        LearnDto dto = new(
+            learns.Count + 1,
+            newLearn.Name,
+            newLearn.Genre,
+            newLearn.Price,
+            newLearn.ReleaseDate
+        );
+        learns.Add(dto);
+        // return Results.Created($"/learns/{dto.Id}", dto);
+        return Results.CreatedAtRoute("GetLearnById", new { id = dto.Id }, dto);
+    }
+);
+
+
+
+// PUT /learns/{id}
+app.MapPut("/learns/{id}", (int id, UpdateLearnDto updatedLearn) =>
+{
+    var existingLearn = learns.FindIndex(learn => learn.Id == id);
+    if (existingLearn == -1)
+    {
+        return Results.NotFound();
+    }
+    learns[existingLearn] = new LearnDto(
+        id,
+        updatedLearn.Name,
+        updatedLearn.Genre,
+        updatedLearn.Price,
+        updatedLearn.ReleaseDate
+    );
+    // return Results.NoContent();
+    return Results.Ok(learns[existingLearn]);
+});
+
+// Delete /learns/{id}
+app.MapDelete("/learns/{id}", (int id) =>
+{
+    var existingLearn = learns.FindIndex(learn => learn.Id == id);
+    if (existingLearn == -1)
+    {
+        Console.WriteLine("Not found");
+        return Results.NotFound();
+    }
+    
+    learns.RemoveAt(existingLearn);
+    return Results.NoContent();
+});
 app.Run();
     

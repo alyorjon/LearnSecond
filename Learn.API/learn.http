@@ -1,6 +1,34 @@
-# Check REST API is working
-# GET http://localhost:5227/
-# GET all learners data
-# GET http://localhost:5227/learns/
+@base_user=http://localhost:5227/
+### Check REST API is working
+GET {{base_user}}
+
+###  GET all learners data
+GET {{base_user}}learns/
+###
 # GET one learner by id
-GET http://localhost:5227/learns/2
+GET {{base_user}}learns/5
+
+###  Insert new learn data
+POST {{base_user}}learns/
+Content-Type: application/json
+
+{
+    "name":"AI coder",
+    "genre":"Programmer",
+    "price":22.22,
+    "releaseDate":"2025-07-27"
+}
+
+###  Update existing learn data
+PUT {{base_user}}learns/9
+Content-Type: application/json
+
+{
+    "name":"Tegma jahongir",
+    "genre":"Programmerasdf",
+    "price":22.22,
+    "releaseDate":"2025-07-27"
+}
+
+### Delete by id
+DELETE {{base_user}}learns/6

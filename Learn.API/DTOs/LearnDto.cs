@@ -5,5 +5,5 @@ public record class LearnDto(
     string Name,
     string Genre,
     decimal Price,
-    DateOnly ReleaseDate);
+    DateOnly ReleaseDate); 
 // This DTO is used to transfer data between the API and the client.
