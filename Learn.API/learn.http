@@ -1,1 +1,6 @@
-GET http://localhost:5227/
+# Check REST API is working
+# GET http://localhost:5227/
+# GET all learners data
+# GET http://localhost:5227/learns/
+# GET one learner by id
+GET http://localhost:5227/learns/2
